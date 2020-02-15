@@ -1,0 +1,17 @@
+image: node:12.14.0
+
+before_script:
+  - npm install
+
+stages:
+  - test
+
+test:
+  stage: testing
+  script:
+    - ng test
+
+test:
+  stage: lint
+  script:
+    - ng lint
