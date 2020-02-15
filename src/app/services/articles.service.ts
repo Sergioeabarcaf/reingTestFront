@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as moment from 'moment';
 
 interface ArticleGetInterface {
   title: string;
@@ -24,7 +25,7 @@ export interface Articleinterface {
 })
 
 export class ArticlesService {  
-  url = 'http://localhost:8000/articles';
+  url = 'http://localhost:8080/articles';
   articles: Articleinterface[];
 
   constructor(public http: HttpClient) { }
@@ -39,17 +40,28 @@ export class ArticlesService {
           return acc;
         }
 
+        let createdAtMoment = moment(article.created_at);
+        const dayDiff = moment().diff(article.created_at,'day')
+        let dateAcc: String;
+
+        if ( dayDiff < 1) {
+          dateAcc = createdAtMoment.format('hh:mm A');
+        } else {
+          dateAcc = dayDiff == 1 ? 'Yesterday' : createdAtMoment.format('MMM DD')
+        }
+
         acc.push({
           title: article.story_title ? article.story_title : article.title,
           url: article.story_url ? article.story_url : article.url,
           author: article.author,
-          created_at: article.created_at,
+          created_at: dateAcc,
           objectID: article.objectID
         });
         return acc;
       }, []);
 
       this.articles = articles;
+      console.log(this.articles);
       return true;
     } catch (err) {
       console.error(err);
