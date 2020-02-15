@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ArticlesService } from './services/articles.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'reingTestFront';
+
+  constructor(public _articlesServices: ArticlesService) {
+    this._articlesServices.getArticles();
+  }
 }
+
