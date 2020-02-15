@@ -25,7 +25,7 @@ export interface Articleinterface {
 })
 
 export class ArticlesService {  
-  url = 'http://localhost:8080/articles';
+  url = 'http://database:8080/articles';
   articles: Articleinterface[];
 
   constructor(public http: HttpClient) { }
