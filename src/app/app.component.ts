@@ -8,9 +8,9 @@ import { ArticlesService } from './services/articles.service';
 })
 export class AppComponent {
   title = 'reingTestFront';
+  colorTile = '#515151';
+  colorList = "#FFFFFF";
 
-  constructor(public _articlesServices: ArticlesService) {
-    this._articlesServices.getArticles();
-  }
+  constructor(public _articlesServices: ArticlesService) {}
 }
 
