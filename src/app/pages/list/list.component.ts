@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticlesService, articleinterface} from '../../services/articles.service';
+import { ArticlesService } from '../../services/articles.service';
 
 @Component({
   selector: 'app-list',
@@ -8,18 +8,17 @@ import { ArticlesService, articleinterface} from '../../services/articles.servic
 })
 export class ListComponent implements OnInit {
 
-  displayedColumns: String[] = ['title', 'createAt', 'trash'];
+  displayedColumns = ['title', 'createAt', 'trash'];
 
-  constructor(public _articlesServices: ArticlesService) {
-    this._articlesServices.getArticles();
+  constructor(public articlesServices: ArticlesService) {
+    this.articlesServices.getArticles();
   }
 
   ngOnInit(): void {
   }
 
-  async deleteArticle(id:any) {
-    console.log(id);
-    await this._articlesServices.delete(id);
+  async deleteArticle(id: string) {
+    await this.articlesServices.delete(id);
   }
 
 }

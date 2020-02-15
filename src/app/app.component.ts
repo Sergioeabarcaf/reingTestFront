@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ArticlesService } from './services/articles.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +8,7 @@ import { ArticlesService } from './services/articles.service';
 export class AppComponent {
   title = 'reingTestFront';
   colorTile = '#515151';
-  colorList = "#FFFFFF";
+  colorList = '#FFFFFF';
 
-  constructor(public _articlesServices: ArticlesService) {}
 }
 

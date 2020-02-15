@@ -1,41 +1,40 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-interface articleGetInterface {
-  title: String;
-  story_title: String;
-  author: String;
-  created_at: String;
-  objectID: String;
-  url: String;
-  story_url: String;
+interface ArticleGetInterface {
+  title: string;
+  story_title: string;
+  author: string;
+  created_at: string;
+  objectID: string;
+  url: string;
+  story_url: string;
 }
 
-export interface articleinterface {
-  title: String;
-  author: String;
-  created_at: String;
-  objectID: String;
-  url: String;
+export interface Articleinterface {
+  title: string;
+  author: string;
+  created_at: string;
+  objectID: string;
+  url: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class ArticlesService {
-  
-  url = 'http://localhost:8080/articles';
-  articles: articleinterface[];
+export class ArticlesService {  
+  url = 'http://localhost:8000/articles';
+  articles: Articleinterface[];
 
   constructor(public http: HttpClient) { }
 
   async getArticles() {
     try {
       this.articles = [];
-      const listArticles = await this.http.get<articleGetInterface[]>(this.url).toPromise();
+      const listArticles = await this.http.get<ArticleGetInterface[]>(this.url).toPromise();
 
-      const articles: articleinterface[] = listArticles.reduce((acc, article: articleGetInterface) => {
+      const articles: Articleinterface[] = listArticles.reduce((acc, article: ArticleGetInterface) => {
         if (!article.story_title && !article.title) {
           return acc;
         }
@@ -56,7 +55,7 @@ export class ArticlesService {
       console.error(err);
       return [];
     }
-  };
+  }
 
   delete(id: string) {
     return this.http.delete(`${this.url}/${id}`).toPromise()
@@ -66,5 +65,5 @@ export class ArticlesService {
       .catch((err) => {
         console.error(err);
       });
-  };
+  }
 }
