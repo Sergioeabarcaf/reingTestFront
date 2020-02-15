@@ -1,0 +1,15 @@
+td {
+    background-color: #ffffff;
+    border: 1px #cccccc;
+    width: 50%;
+}
+
+td #title {
+    font-size: 13px;
+    color: #333333;
+} 
+
+td #autor {
+    font-size: 10px;
+    color: #999999;
+}

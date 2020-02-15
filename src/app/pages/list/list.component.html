@@ -1,0 +1,26 @@
+<div id="spinner" *ngIf="_articlesServices.articles.length == 0">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div id="list" *ngIf="_articlesServices.articles.length > 0">
+    <table mat-table [dataSource]="_articlesServices.articles" class="mat-elevation-z8">
+        <ng-container matColumnDef="title">
+            <td mat-cell *matCellDef="let element"> <span id="title">{{ element.title }}</span> <span id="autor"> - {{ element.author }} - </span> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="createAt">
+            <td mat-cell *matCellDef="let element"> <span id="title">{{ element.createAt }}</span></td>
+        </ng-container>
+
+        <ng-container matColumnDef="trash">
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button (click)="deleteArticle(element.objectID)">
+                    <mat-icon aria-hidden="false" aria-label="icon Delete">delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>    
+</div>
