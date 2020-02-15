@@ -1,15 +1,18 @@
-td {
+tr {
     background-color: #ffffff;
     border: 1px #cccccc;
-    width: 50%;
 }
 
-td #title {
+tr #title {
     font-size: 13px;
     color: #333333;
 } 
 
-td #autor {
+tr #autor {
     font-size: 10px;
     color: #999999;
+}
+
+tr :hover {
+    background-color: #fafafa;
 }
